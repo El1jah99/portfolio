@@ -1,0 +1,71 @@
+"""
+    Gets financial statements from Yahoo Finance
+    Author: Elijah Miller
+    Date: 2/23/2022
+
+"""
+
+# Import libraries
+from yahoo_fin import stock_info as si
+import yahoo_fin.stock_info as yf
+
+
+# Initialize lists
+balance_sheet = []
+income_statement = []
+cfs = []
+years = []
+
+# Ask for ticker
+ticker = input("Input ticker: ")
+
+# 
+def get_data(ticker):
+    global balance_sheet
+    global income_statement
+    global cfs
+    global years
+    balance_sheet = yf.get_balance_sheet(ticker)
+    income_statement = yf.get_income_statement(ticker)
+    cfs = yf.get_cash_flow(ticker)
+    years = balance_sheet.columns
+
+get_data(ticker)
+
+statement_select = int(input("Which financial statement do you want? \n1. Income Statement \n2. Balance Sheet \n3. Cash Flows \n4. All \n"))
+
+if statement_select == 1:
+    print("Income Statement: ")
+    print(income_statement)
+    print()
+    print()
+
+elif statement_select == 2:
+    print("Balance Sheet: ")
+    print(balance_sheet)
+    print()
+    print()
+
+elif statement_select == 3:
+    print("Statement of Cash Flows: ")
+    print(cfs)
+    print()
+    print()
+
+elif statement_select == 4:
+    print("Income Statement: ")
+    print(income_statement)
+    print()
+    print()
+    print("Balance Sheet: ")
+    print(balance_sheet)
+    print()
+    print()
+    print("Statement of Cash Flows: ")
+    print(cfs)
+    print()
+    print()
+else:
+    print("Sorry, that is not a valid choice.")
+
+input("")
